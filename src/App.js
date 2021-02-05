@@ -3,21 +3,29 @@ import logo from "./logo.svg";
 import "./App.css";
 
 class App extends Component {
-  state = { toggle: true };
+  state = {
+    input: "Hello",
+  };
 
-  toggle = () => {
-    this.setState({toggle: !this.state.toggle})
-  }
+  submit = () => {};
+
+  updateInput = (event) => {
+    this.setState({
+      input: event.target.value,
+    });
+  };
 
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-Logo" alt="logo" />
-          <Welcome text="Welcome to React" />
-          {this.state.toggle && <p>This should show and hide</p>}
-          <button onClick={this.toggle}>Show / Hide</button>
-        </header>
+        <Welcome text="Welcome to React" />
+        <input
+          type="text"
+          onChange={this.updateInput}
+          value={this.state.input}
+        />
+        <input type="text" ref={(input) => (this.text = input)} />
+        <button onClick={this.submit}>Show Value</button>
       </div>
     );
   }
